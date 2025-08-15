@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# take a tfplan as input and print out stats about what type of resources are being impacted
+# ignore bold text, find lines with resource paths and modification type, extract, summarize
+sed -E 's/\x1b\[[0-9;]*m//g' \
+    | grep -e '^  #.*will be' -e '^  #.*must be' \
+    | gsed  's/.*\.\([A-Za-z0-9_-]*\)*\.\([A-Za-z0-9_-]*\)\(\[[^]]*\]\)\{0,1\} \(must be \|will be \)\(.*\)/\1,\5/g' \
+    | sort | uniq -c | sort -rn | column -s, -t

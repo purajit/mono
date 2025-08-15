@@ -1,0 +1,8 @@
+# base toolchains
+uv         0.8.11
+
+# linters/checkers
+pre-commit 4.3.0
+ruff       0.12.9
+shellcheck 0.11.0
+shfmt      3.12

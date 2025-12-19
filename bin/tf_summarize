@@ -3,4 +3,4 @@
 # ignore bold text, find lines with resource paths and modification type, extract, summarize
 sed -E 's/\x1b\[[0-9;]*m//g' \
     | gsed -n '/\(will be\|must be\)/ s/.*\.\([A-Za-z0-9_-]*\)*\.\([A-Za-z0-9_-]*\)\(\[[^]]*\]\)\{0,1\} \(must be \|will be \)\(.*\)/\1,\5/p' \
-    | sort | uniq -c | sort -rn | column -s, -t | { if [ "$1" = "-r" ]; then cat; else grep -v 'read during apply'; fi }
+    | sort | uniq -c | sort -rn | column -s, -t | { if [ "$1" = "-r" ]; then cat; else grep -v 'read during apply'; fi; }

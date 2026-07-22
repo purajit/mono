@@ -1,0 +1,37 @@
+plugins:
+  kubevirt-console:
+    shortCut: s
+    description: Serial console
+    scopes:
+      - virtualmachines
+      - virtualmachineinstances
+    command: virtctl
+    background: false
+    args:
+      - console
+      - $NAME
+      - --namespace
+      - $NAMESPACE
+      - --kubeconfig
+      - $KUBECONFIG
+      - --context
+      - $CONTEXT
+
+  # doesn't work for range operations - see https://github.com/derailed/k9s/issues/3337
+  kubevirt-stop-vm:
+    shortCut: Shift-X
+    description: Stop VM
+    scopes:
+      - virtualmachines
+      - virtualmachineinstances
+    command: virtctl
+    background: false
+    args:
+      - stop
+      - $NAME
+      - --namespace
+      - $NAMESPACE
+      - --kubeconfig
+      - $KUBECONFIG
+      - --context
+      - $CONTEXT

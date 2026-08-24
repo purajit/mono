@@ -24,13 +24,7 @@ obj.timer = hs.timer.doEvery(10, function()
             end tell
         ]])
         obj.lastTheme = "light"
-        print("switched toj light")
-        print(obj.lastTheme)
-        print(obj)
-        for i, key in ipairs(obj) do
-            print(key)
-        end
-        print(lux)
+        print(string.format("Switched to light mode at %f lux", lux))
     elseif lux <= obj.luxThreshold and obj.lastTheme ~= "dark" then
         local success, des, raw = hs.osascript.applescript([[
             tell application "System Events"
@@ -40,8 +34,8 @@ obj.timer = hs.timer.doEvery(10, function()
             end tell
         ]])
         obj.lastTheme = "dark"
-        print("switched to dark")
-    end
+        print(string.format("Switched to dark mode at %f lux", lux))
+   end
 end)
 
 function obj:init()
